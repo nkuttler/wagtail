@@ -9,6 +9,9 @@ import wagtail.wagtailsearch.index
 
 
 def initial_data(apps, schema_editor):
+    if getattr(settings, 'WIMDB', schema_editor.connection.alias) != \
+            schema_editor.connection.alias:
+        return
     ContentType = apps.get_model('contenttypes.ContentType')
     Group = apps.get_model('auth.Group')
     Page = apps.get_model('wagtailcore.Page')

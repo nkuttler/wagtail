@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.db import migrations
 
 
 def create_admin_access_permissions(apps, schema_editor):
+    if getattr(settings, 'WIMDB', schema_editor.connection.alias) != \
+            schema_editor.connection.alias:
+        return
     ContentType = apps.get_model('contenttypes.ContentType')
     Permission = apps.get_model('auth.Permission')
     Group = apps.get_model('auth.Group')
