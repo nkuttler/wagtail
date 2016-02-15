@@ -18,7 +18,11 @@ DATABASES = {
         'TEST': {
             'NAME': os.environ.get('DATABASE_NAME', None),
         }
-    }
+    },
+    'secondary': {
+        'ENGINE': os.environ.get('DATABASE_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DATABASE_NAME', 'wagtail_secondary'),
+    },
 }
 
 
